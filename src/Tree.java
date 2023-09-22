@@ -105,13 +105,13 @@ public class Tree {
         } else if (is_empty() || other.is_empty()) {
             return false;
         } else {
-            if (_root != other._root) {
+            if (!_root.equals(other._root)) {
                 return false;
             }
             if (_subtrees.size() != other._subtrees.size()) {
                 return false;
             }
-            return _subtrees == other._subtrees;
+            return _subtrees.equals(other._subtrees);
         }
     }
 
@@ -120,7 +120,7 @@ public class Tree {
             return false;
         }
         // item may in root, or subtrees
-        if (_root == item) {
+        if (_root.equals(item)) {
             return true;
         } else {
             for (Tree subtree : _subtrees) {
@@ -158,7 +158,7 @@ public class Tree {
     public boolean delete_item(Object item) {
         if (is_empty()) { // The item is not in the tree.
             return false;
-        } else if (_root == item) { // We've found the item: now delete it.
+        } else if (_root.equals(item)) { // We've found the item: now delete it.
             _delete_root();
             return true;
         } else { // Loop through each subtree, and stop the first time
@@ -232,7 +232,7 @@ public class Tree {
     public boolean insertChild(Object item, Object parent) {
         if (this.is_empty()) {
             return false;
-        } else if (_root == parent) {
+        } else if (_root.equals(parent)) {
             _subtrees.add(new Tree(item));
             return true;
         } else {
